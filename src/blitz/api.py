@@ -1,5 +1,5 @@
-__author__="ghermeto"
-__date__ ="$27/07/2011 23:23:17$"
+__author__ = "ghermeto"
+__date__ = "$27/07/2011 23:23:17$"
 
 import json
 import time
@@ -8,12 +8,17 @@ try:
 except ImportError:
     from httplib import HTTPSConnection
 
+
 class Error(Exception):
     """ Base error for Blitz api. """
-    
+
     def __init__(self, error, reason):
         self.error = error
         self.reason = reason
+
+    def __str__(self):
+        return 'Error({}, {})'.format(self.error, self.reason)
+
 
 class ValidationError(Error):
     """ Validation error for Blitz api. """

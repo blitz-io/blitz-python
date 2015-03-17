@@ -23,9 +23,11 @@ def validate(options):
     if not 'steps' in options or not validate_list(options['steps']):
         failed.append('steps')
     else:
+        step = options['steps'][0]
+        if not 'url' in step or not validate_url(step['url']):
+            failed.append('url')
+
         for step in options['steps']:
-            if not 'url' in step or not validate_url(step['url']):
-                failed.append('url')
             if 'referrer' in step and not validate_url(step['referrer']):
                 failed.append('referrer')
             if 'status' in step and not validate_int(step['status']):
